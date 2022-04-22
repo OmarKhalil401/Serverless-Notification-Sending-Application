@@ -1,14 +1,14 @@
 ## Send SMS using SNS and Lambda
 
-The first step is to create a Lambda function capable of sending to SNS the instruction to send a SMS.
+The first step is to create a Lambda function capable of sending to SNS the instruction to send an SMS.
 
-When sending a SMS, there are two fields that must be filled in:
+When sending an SMS, two fields must be filled in:
 - The content of the message
 - the recipient's phone number
 
 Those two fields will be filled in from the website hosted on S3.
 
-Like *email.py*, it is necessary to create a Lambda function capable of retrieving the content of the message and the phone number of the recipient as an event, and to add them to the instruction sent to SNS.
+Like *email.py*, it is necessary to create a Lambda function capable of retrieving the content of the message and the phone number of the recipient as an event and adding them to the instruction sent to the SNS.
 
 #### Prerequisites before starting
 
@@ -36,7 +36,7 @@ Add your phone number **with the area code**, and select the verification messag
 
 ![Verify Phone Number](images/verify-phone-number.png ':size=800')
 
-All that remains is to enter the Verification code received by SMS:
+All that remains is to enter the verification code received by SMS:
 
 ![Verification Code](images/verification-code.png ':size=800')
 
@@ -60,13 +60,13 @@ Once the function is created, go to the **Code source** menu. This can be seen:
 
 Delete the code contained in *lambda_function*. Everything is ready, it's time to code.
 
-As before, in order to interact with AWS services, you must first import the boto3 libraries inside your code:
+As before, to interact with AWS services, you must first import the boto3 libraries inside your code:
 
 ``` py
 import boto3
 ```
 
-Here, the service to be interacted with is SNS. To do this, you have to call the *client('sns')* class of the boto3 library. This class will be stored in a *sns* variable to simplify the code:
+Here, the service to be interacted with is SNS. To do this, you have to call the *client('sns')* class of the boto3 library. This class will be stored in an *sns* variable to simplify the code:
 
 ``` py
 sns = boto3.client('sns')
@@ -78,7 +78,7 @@ Create the function *lambda_handler*, which, to remind you, is the default funct
 def lambda_handler(event, context):
 ```
 
-Within this function, the SNS appropriate function for sending a SMS must be filled in. To find the function, let's have a look at the boto3 documentation for SNS: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sns.html
+Within this function, the SNS appropriate function for sending an SMS must be filled in. To find the function, let's have a look at the boto3 documentation for SNS: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sns.html
 
 After a little research, the function that fits the bill seems to be *publish()*:
 
@@ -95,7 +95,7 @@ The *publish* function to be added to *lambda_handler* should look like this:
     )
 ```
 
-So, as for *email.py*, by adding the variables contained in event, we get this:
+So, as for *email.py*, by adding the variables contained in the event, we get this:
 
 ``` py
     sns.publish(
