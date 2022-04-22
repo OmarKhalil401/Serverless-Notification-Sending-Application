@@ -20,11 +20,11 @@ Through this project, you will be able to send an email or a SMS from a website 
 
 Navigate through the project's folders to learn more about each step and compelete the project.
 
-[1. Create a Lambda Role](/Lambda_Role/README.md) 
+[1. Create a Lambda Role](/1-Lambda_Role/README.md) 
 
-[2. Send Email using SES and Lambda](/SES/README.md) 
+[2. Send Email using SES and Lambda](/2-SES/README.md) 
 
-[3. Send SMS using SNS and Lambda](/SNS/README.md) 
+[3. Send SMS using SNS and Lambda](/3-SNS/README.md) 
 
 [4.  Create and Manage how to send Notifications using Step Functions](/Step_Functions/README.md) 
 
@@ -33,8 +33,6 @@ Navigate through the project's folders to learn more about each step and compele
 [6. Create and configure the API Gateway](/API_Gateway/README.md) 
 
 [7. Code a website and upload it to S3](/S3/README.md) 
-
-[8. Create and configure the API Gateway](/API_Gateway/README.md) 
 
 <HR>
 
