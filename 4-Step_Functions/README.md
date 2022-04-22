@@ -71,7 +71,8 @@ You can see that a state machine MUST consist of the **StartAt** and **States** 
 {
     "Comment": "State machine for sending SMS & email",
     "StartAt": "Select Type of Sending",
-    "States": {
+    "States": 
+}
 ```
 
 In doing so, **Comment** explains the functionality of the state machine, **StartAt** allows you to define which action to start with (in this case *Select Type of Sending*), and **States** contains all the states that contain the actions you want to perform.
@@ -107,7 +108,7 @@ The state is of type *Choice*, which as its name indicates, allows a choice betw
                     "Next": "SMS"
                 }
             ]
-        },
+        }
 ```
 
 In the **Choices** field, two elements are filled in.
@@ -127,7 +128,7 @@ Continue with the second state, *Email* :
             "Type" : "Task",
             "Resource": "<lambda_email.py_arn>",
             "End": true
-        },
+        }
 ```
 
 The state is of type *Task*, which allows executing a resource by specifying its ARN. Here the resource is the Lambda function *email.py*. The **"End": true** field is used to say that this is the last state to be executed.
