@@ -26,13 +26,13 @@ Navigate through the project's folders to learn more about each step and compele
 
 [3. Send SMS using SNS and Lambda](/3-SNS/README.md) 
 
-[4.  Create and Manage how to send Notifications using Step Functions](/Step_Functions/README.md) 
+[4.  Create and Manage how to send Notifications using Step Functions](/4-Step_Functions/README.md) 
 
-[5. Create the REST API Handler using Lambda](/REST_API_Handler/README.md) 
+[5. Create the REST API Handler using Lambda](/5-REST_API_Handler/README.md) 
 
-[6. Create and configure the API Gateway](/API_Gateway/README.md) 
+[6. Create and configure the API Gateway](/6-API_Gateway/README.md) 
 
-[7. Code a website and upload it to S3](/S3/README.md) 
+[7. Code a website and upload it to S3](/7-S3/README.md) 
 
 <HR>
 
