@@ -34,4 +34,4 @@ Now all that remains to be done is to validate and create the Lambda Role with t
 
 Once the Lambda Role has been created, it is time to create the first Lambda function: *email.py*.
 
-### [Send Email using SES and Lambda](Serverless-Notification-Sending-Application/2-SES/README.md)
+### [Send Email using SES and Lambda](https://github.com/OmarKhalil401/Serverless-Notification-Sending-Application/tree/main/2-SES)
