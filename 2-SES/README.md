@@ -2,24 +2,24 @@
 
 The first step is to create a Lambda function capable of sending to SES the instruction to send an email.
 
-When writing an email, there are three fields that must be filled in:
+When writing an email, three fields must be filled in:
 - the sender's email address
 - The content of the message
 - the recipient's email address
 
-The sender's email address is automaticly filled in, and the two other fields will be filled in from the website hosted on S3.
+The sender's email address is automatically filled in, and the two other fields will be filled in from the website hosted on S3.
 
-It is therefore necessary to create a Lambda function capable of retrieving the content of the message and the address of the recipient as an event, and to add them to the instruction sent to SES.
+It is therefore necessary to create a Lambda function capable of retrieving the content of the message and the address of the recipient as an event and adding them to the instruction sent to SES.
 
 #### Prerequisites before starting
 
-What you should know before using SES is that the service can send emails only from verified email adresses and to verified email addresses. For this project, two addresses will be verified: a source email address and a destination email address.
+What you should know before using SES is that the service can send emails only from verified email addresses and to verified email addresses. For this project, two addresses will be verified: a source email address and a destination email address.
 
 To do this, go to SES, and select **Create Identity**:
 
 ![SES Create Identity](images/create-identity.png ':size=500')
 
-Select **Email address** as **Identity type** and fill in the "email address" field with the address that will serve as the source email address. For this example, the source email address is *cif-source<span>@yopmail.com*:
+Select **Email address** as **Identity type** and fill in the "email address" field with the address that will serve as the source email address.
 
 ![Create Source Email Address](images/source-email.png ':size=600')
 
@@ -51,13 +51,13 @@ Once the function is created, go to the **Code source** menu. This can be seen:
 
 Delete the code contained in *lambda_function*. Everything is ready, it's time to code.
 
-In order to interact with AWS services in Python, you need to know the Software Development Kit (SDK) used by AWS. An SDK is a toolkit that a platform provides to developers to interact with its services.
+To interact with AWS services in Python, you need to know the Software Development Kit (SDK) used by AWS. An SDK is a toolkit that a platform provides to developers to interact with its services.
 
-> For those who struggle to understand what an SDK is, I recommend you watch this great video from IBM explaining it: https://www.youtube.com/watch?v=kG-fLp9BTRo
+> For those who struggle to understand what an SDK is, I recommend you watch this great video from IBM explaining it: [Video](https://www.youtube.com/watch?v=kG-fLp9BTRo)
 
-Here, AWS provides its own SDK for python3 named boto3. More details on this link: https://docs.aws.amazon.com/lambda/latest/dg/lambda-python.html
+Here, AWS provides its SDK for python3 named boto3. More details on this [link](https://docs.aws.amazon.com/lambda/latest/dg/lambda-python.html)
 
-In order to interact with AWS services, you must first import the boto3 library inside your code:
+To interact with AWS services, you must first import the boto3 library inside your code:
 
 ``` py
 import boto3
@@ -77,7 +77,7 @@ def lambda_handler(event, context):
 
 The function contains two arguments: *event* and *context*.
 
-*Event* is the event value received by Lambda (the Input), and *context* contains information specific to the function (execution time, name, version etc.). 
+*Event* is the event value received by Lambda (the Input), and *context* contains information specific to the function (execution time, name, version, etc.). 
 > The context argument is of no use here, but for the more curious who want to learn more about the context argument, go to this link: https://docs.aws.amazon.com/lambda/latest/dg/python-context.html
 
 Within this function, the SES appropriate function for sending an email must be filled in. To find the function, let's have a look at the boto3 documentation for SES: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ses.html
@@ -86,25 +86,25 @@ After a little research, the function that fits the bill seems to be *send_email
 
 ![Function Send Email](images/function-send-email.png ':size=600')
 
-And according to the documentation, three fields are mandatory: **Source**, **Destination** and **Message**. Perfect, the source and destination addresses are ready, and the message will contain what you want.
+And according to the documentation, three fields are mandatory: **Source**, **Destination**, and **Message**. Perfect, the source and destination addresses are ready, and the message will contain what you want.
 
 The *send_email* function to be added to *lambda_handler* should look like this:
 
 ``` py
     ses.send_email(
-        Source='cif-source@yopmail.com',
+        Source='omarismail401@gmail.com',
         Destination={
             'ToAddresses': [
-                'cif-destination@yopmail.com',
+                'omarkhalilaws@yahoo.com',
             ]
         },
         Message={
             'Subject': {
-                'Data': 'Cloudisfree - Project 2'
+                'Data': 'Email Notification Sent'
             },
             'Body': {
                 'Text': {
-                    'Data': 'This is my message'
+                    'Data': 'The Email has been sent successefuly'
                 }
             }
         }
@@ -117,7 +117,7 @@ To do this, add two variables "destinationEmail" and "message" from the event, i
 
 ``` py
     ses.send_email(
-        Source='cif-source@yopmail.com',
+        Source='omarismail401@gmail.com',
         Destination={
             'ToAddresses': [
                 event['destinationEmail'],
@@ -125,7 +125,7 @@ To do this, add two variables "destinationEmail" and "message" from the event, i
         },
         Message={
             'Subject': {
-                'Data': 'Cloudisfree - Project 2'
+                'Data': 'Email Notification Sent'
             },
             'Body': {
                 'Text': {
@@ -138,7 +138,7 @@ To do this, add two variables "destinationEmail" and "message" from the event, i
 
 If you look closely, the destination email address and message have been replaced by **event['destinationEmail']** and **event['message']**. This way, the values of the destination email address and the message will be those retrieved from the event.
 
-All that remains is to add a **return** at the end of the function. It is important to know that the return is received by the one who called the Lambda function. According to the project diagram, it is Step Functions that calls this Lambda function, and Step Functions needs to receive a return in order to operate, but the value of the return does not matter.
+All that remains is to add a **return** at the end of the function. It is important to know that the return is received by the one who called the Lambda function. According to the project diagram, it is Step Functions that call this Lambda function, and Step Functions need to receive a return to operate, but the value of the return does not matter.
 
 Fill in the return at the end of the function, with the value of your choice (in this case the value is *"Email sent!"*):
 
@@ -146,7 +146,7 @@ Fill in the return at the end of the function, with the value of your choice (in
     return 'Email sent!'
 ```
 
-the Lambda function should look like this (with your own source email address):
+the Lambda function should look like this (with your source email address):
 
 ``` py
 import boto3
@@ -155,7 +155,7 @@ ses = boto3.client('ses')
 
 def lambda_handler(event, context):
     ses.send_email(
-        Source='cif-source@yopmail.com',
+        Source='omarismail401@gmail.com',
         Destination={
             'ToAddresses': [
                 event['destinationEmail'],
@@ -163,7 +163,7 @@ def lambda_handler(event, context):
         },
         Message={
             'Subject': {
-                'Data': 'Cloudisfree - Project 2'
+                'Data': 'Email Notification Sent'
             },
             'Body': {
                 'Text': {
@@ -179,7 +179,7 @@ It is now time to Deploy and Test the code:
 
 ![Email Function Finished](images/email-function-finished.png ':size=900')
 
-The last step is to configure a test event to simulate the reception of an event. To do this, fill in the **destinationEmail** and **message** variables with the desired values. In this example, **destinationEmail** has the value *cif-destination<span>@yopmail.com* and **message** has the value *Time to test*:
+The last step is to configure a test event to simulate the reception of an event. To do this, fill in the **destinationEmail** and **message** variables with the desired values. In this example, **destinationEmail** has the value *omarkhalilaws<span>@yahoo.com* and **message** has the value *Time to test*:
 
 ![Configure Test Event](images/configure-test-event.png ':size=600')
 
@@ -195,4 +195,4 @@ The message was received at the right address with the right message: **Mission 
 
 The same must now be done for the *sms.py* function.
 
-### [Send SMS using SNS and Lambda](Serverless-Notification-Sending-Application/3-SNS/README.md)
+### [Send SMS using SNS and Lambda](https://github.com/OmarKhalil401/Serverless-Notification-Sending-Application/blob/main/3-SNS/README.md)
