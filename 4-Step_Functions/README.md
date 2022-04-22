@@ -217,7 +217,7 @@ A window appears, asking for a Test Input for the state machine (just like the T
 
 All that remains is to launch the execution with the desired values:
 
-![Input Step Functions](images/input-step-functions.png ':size=1000')
+![Input Step Functions](images/input-step-functions.png ':size=1000')ّ
 
 For this execution, an email must be sent since the **typeOfSending** variable is set to *email*, so let's see how this works:
 
