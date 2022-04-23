@@ -58,4 +58,4 @@ The API is deployed in the newly created stage. It will now be possible to send 
 
 The **Invoke URL** is ready. All that remains to be done is to create the website *index.html* on which the data will be entered, as well as the script *formToApi.js* that will send the data to the Invoke URL.
 
-### [Code a website and upload it to S3](/projects/project-2/part-9/README.md)
+### [Code a website and upload it to S3](https://github.com/OmarKhalil401/Serverless-Notification-Sending-Application/blob/main/7-S3/README.md)

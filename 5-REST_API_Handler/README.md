@@ -123,7 +123,7 @@ Following the requested format, the Input must look like this:
 
 ``` json
 {
-    "body": "{\"typeOfSending\":\"sms\", \"destinationEmail\":\"cif-destination@yopmail.com\", \"phoneNumber\":\"+33678901234\", \"message\":\"Sent from REST API Handler\"}"
+    "body": "{\"typeOfSending\":\"sms\", \"destinationEmail\":\"omarkhalilaws@yahoo.com\", \"phoneNumber\":\"+201011750053\", \"message\":\"Sent from REST API Handler\"}"
 }
 ```
 
@@ -135,4 +135,4 @@ If you received an email or an SMS based on what you have chosen: **Congratulati
 
 The *restApiHandler.py* script is ready, and it's time to link it to API Gateway.
 
-### [Create and configure the API Gateway](/projects/project-2/part-8/README.md)
+### [Create and configure the API Gateway](https://github.com/OmarKhalil401/Serverless-Notification-Sending-Application/blob/main/6-API_Gateway/README.md)

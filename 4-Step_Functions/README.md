@@ -89,7 +89,8 @@ These three states must therefore be created, with an action assigned to them:
 Start with the first state, *Select Type of Sending* :
 
 ``` json
-        "Select Type of Sending": {
+
+            "Select Type of Sending":
             "Type": "Choice",
 ```
 
@@ -108,7 +109,6 @@ The state is of type *Choice*, which as its name indicates, allows a choice betw
                     "Next": "SMS"
                 }
             ]
-        }
 ```
 
 In the **Choices** field, two elements are filled in.
@@ -141,8 +141,6 @@ Finish with the third state, *SMS* :
             "Resource": "<lambda_sms.py_arn>",
             "End": true
         }
-    }
-}
 ```
 
 The state is of type *Task*, and this time, the resource is the Lambda function *sms.py*. The **"End": true** field is used to say that this is the last state to be executed too.
