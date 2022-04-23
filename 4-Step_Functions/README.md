@@ -232,6 +232,6 @@ The mail has been received: the state machine works perfectly to send an email. 
 
 According to Step Functions, everything went well, and the SMS has been received.
 
-**The *Sending* state machine is now ready for use**. It's time to go back to Lambda to attack the third and final Lambda function: *restApiHandler.py*.
+**The *Sending* state machine is now ready for use**. It's time to go back to Lambda to attach the third and final Lambda function: *restApiHandler.py*.
 
 ### [Create the REST API Handler using Lambda](https://github.com/OmarKhalil401/Serverless-Notification-Sending-Application/blob/main/5-REST_API_Handler/README.md)
