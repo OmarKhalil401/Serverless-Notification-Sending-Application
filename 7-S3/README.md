@@ -64,7 +64,7 @@ Now you want to send the form data to the *formToApi.js* script, to do this you 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 2 - Cloud Is Free</title>
+    <title>Serverless-Notification-Sending-Application</title>
     <script src="formToApi.js"></script>
 </head>
 ```
@@ -106,7 +106,7 @@ In the end, the main page should look like this:
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 2 - Cloud Is Free</title>
+    <title>Serverless-Notification-Sending-Application</title>
     <script src="formToApi.js"></script>
 </head>
 <body>
@@ -256,7 +256,7 @@ function formToApi(event, typeOfSending) {
 
 | Invoke URL | Resource | API URL |
 | ---------- | -------- | --------|
-|  https://tgykfcp526.execute-api.us-east-1.amazonaws.com/sendingStage  | sending | https://tgykfcp526.execute-api.us-east-1.amazonaws.com/sendingStage/sending |
+|  https://9tixyter3f.execute-api.us-east-1.amazonaws.com/SendingStage   | sending | https://9tixyter3f.execute-api.us-east-1.amazonaws.com/SendingStage/notifcation_sending |
 
 Now is the time to test the website. 
 
@@ -265,10 +265,6 @@ Now is the time to test the website.
 Test the website by going to the main page, and trying to send an email and an SMS:
 
 ![Sending Email](images/sending-email.png ':size=300')
-
-Wait a few seconds, before going to the mailbox of the destination mail:
-
-![Email Received](images/email-received.png ':size=300')
 
 The email has been received, now it's time to send an SMS:
 
@@ -353,11 +349,7 @@ Do a final test, by sending an email from S3:
 
 ![Email Sent From S3](images/send-email-from-s3.png ':size=300')
 
-Let's see the destination mailbox:
-
-![Email from S3 Received](images/email-s3-received.png ':size=300')
-
-It works. Now time to send an SMS from S3:
+Now time to send an SMS from S3:
 
 ![SMS Sent From S3](images/send-sms-from-s3.png ':size=300')
 
